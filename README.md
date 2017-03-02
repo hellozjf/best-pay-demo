@@ -6,7 +6,7 @@
 2. 本项目采用SpringBoot1.5开发
 
 ####项目结构
-```
+```bash
 src/main/java/com/github/lly835
 ├── PayDemoApplication.java    
 ├── ServletInitializer.java
@@ -19,11 +19,11 @@ src/main/java/com/github/lly835
 ####运行示例
 1. 运行前需要先配置好密钥, 见`PayConfig.java`
 2. 运行命令
-```
-git clone git@github.com:lly835/best-pay-demo.git
-cd best-pay-demo
-mvn clean package
-java -jar target/*.war
-```
+    ```bash
+    git clone git@github.com:lly835/best-pay-demo.git
+    cd best-pay-demo
+    mvn clean package
+    java -jar target/*.war
+    ```
 3. 浏览器访问http://127.0.0.1:8080/pay
 4. 查看日志
