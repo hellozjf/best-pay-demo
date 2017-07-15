@@ -1,42 +1,37 @@
 package com.github.lly835.config;
 
-import com.lly835.bestpay.config.AlipayConfig;
+import com.lly835.bestpay.config.WxPayH5Config;
+import com.lly835.bestpay.service.impl.BestPayServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @version 1.0 2017/3/2
  * @auther <a href="mailto:lly835@163.com">廖师兄</a>
  * @since 1.0
  */
-@Configuration
+@Component
 public class PayConfig {
 
+    @Autowired
+    private WechatAccountConfig accountConfig;
+
     @Bean
-    public AlipayConfig alipayConfig() {
-        AlipayConfig alipayConfig = new AlipayConfig();
+    public WxPayH5Config wxPayH5Config() {
+        WxPayH5Config wxPayH5Config = new WxPayH5Config();
+        wxPayH5Config.setAppId(accountConfig.getMpAppId());
+        wxPayH5Config.setMchId(accountConfig.getMchId());
+        wxPayH5Config.setMchKey(accountConfig.getMchKey());
+        wxPayH5Config.setKeyPath(accountConfig.getKeyPath());
+        wxPayH5Config.setNotifyUrl(accountConfig.getNotifyUrl());
+        return wxPayH5Config;
+    }
 
-        /**
-         * 合作伙伴id, 支付宝支付必须配置项.
-         * https://openhome.alipay.com/platform/keyManage.htm?keyType=partner
-         * */
-        AlipayConfig.setPartnerId("2088XXXXXXXXXXX");
-
-        /**
-         * 开放平台密钥, 支付宝app和wap支付才需要下面的配置.
-         * https://openhome.alipay.com/platform/keyManage.htm
-         * */
-        alipayConfig.setAppId("2017XXXXXXXXXXX");
-        alipayConfig.setAppPrivateKey("");
-        alipayConfig.setAppPublicKey("");
-
-        /**
-         * 合作伙伴密钥, 支付宝PC(即时到账)支付才需要下面的配置.
-         * https://openhome.alipay.com/platform/keyManage.htm?keyType=partner
-         * */
-        alipayConfig.setPartnerPrivateKey("");
-        alipayConfig.setPartnerPublicKey("");
-
-        return alipayConfig;
+    @Bean
+    public BestPayServiceImpl bestPayService(WxPayH5Config wxPayH5Config) {
+        BestPayServiceImpl bestPayService = new BestPayServiceImpl();
+        bestPayService.setWxPayH5Config(wxPayH5Config);
+        return bestPayService;
     }
 }
