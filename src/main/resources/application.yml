@@ -1,6 +1,6 @@
 wechat:
-  mpAppId: wxd898xxxx
-  mchId: 1483xxxx
-  mchKey: C5245D70xxxxx
-  keyPath: /var/weixin_cert/h5.p12
-  notifyUrl: http://xxx.com/notify
+  mpAppId: wxd898fcb01713c658
+  mchId: 1483469312
+  mchKey: C5245D70627C1F8E9964D494B0735025
+  keyPath: C:\zjf\code\github\best-pay-demo\src\main\resources\h5.p12
+  notifyUrl: http://www.imooc.com
